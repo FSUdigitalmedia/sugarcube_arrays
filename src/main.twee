@@ -1,0 +1,40 @@
+:: StoryData
+{
+  "ifid": "EBE0C5F0-57A7-42B0-8329-EF21076C33AE",
+  "format": "SugarCube",
+  "format-version": "2.34.1"
+}
+
+:: StoryTitle
+An Array Example
+
+:: Style[stylesheet]
+body { background: white }
+.passage { color: black }
+
+:: StoryInit
+<<set $choices to ['first','second','third']>>
+<<set $readerChoice to ''>>
+
+:: Start
+This is an example of how you can use arrays to fill a dropdown list and keep track of which selection that the user made.
+
+Choose a snack from the list:
+
+<<nobr>>
+<<for _i to 0; _i lt $choices.length; _i++>>
+  <<capture _i>>
+    <<link [img["../assets/" + $choices[_i] + ".png"]]>>
+      <<set $readerChoice to _i>>
+      <<goto "secondPassage">>
+    <</link>>
+  <</capture>>
+<</for>>
+<</nobr>>
+
+:: secondPassage
+You selected choice number $readerChoice
+
+Which has this name: <<print $choices[$readerChoice]>>
+Which is this image:
+[img["../assets/" + $choices[$readerChoice] + ".png"]]
