@@ -30,6 +30,7 @@ Choose a snack from this image list:
 <</nobr>>
 
 Or use this list of links:
+
 <<nobr>>
 <<for _i to 0; _i lt $choices.length; _i++>>
   <<capture _i>>
