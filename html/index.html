@@ -102,20 +102,29 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 .passage { color: black }</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="StoryInit" tags="" position="100,100" size="100,100">&lt;&lt;set $choices to [&#39;first&#39;,&#39;second&#39;,&#39;third&#39;]&gt;&gt;
 &lt;&lt;set $readerChoice to &#39;&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="Start" tags="" position="225,100" size="100,100">This is an example of how you can use arrays to fill a dropdown list and keep track of which selection that the user made.
 
-Choose a snack from the list:
+Choose a snack from this image list:
 
 &lt;&lt;nobr&gt;&gt;
 &lt;&lt;for _i to 0; _i lt $choices.length; _i++&gt;&gt;
   &lt;&lt;capture _i&gt;&gt;
-    &lt;&lt;link [img[&quot;../assets/&quot; + $choices[_i] + &quot;.png&quot;]]&gt;&gt;
+    [img[&quot;../assets/&quot; + $choices[_i] + &quot;.png&quot;][secondPassage][$readerChoice to _i]]
+  &lt;&lt;/capture&gt;&gt;
+&lt;&lt;/for&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;
+
+Or use this list of links:
+&lt;&lt;nobr&gt;&gt;
+&lt;&lt;for _i to 0; _i lt $choices.length; _i++&gt;&gt;
+  &lt;&lt;capture _i&gt;&gt;
+    &lt;&lt;link $choices[_i] &quot;secondPassage&quot;&gt;&gt;
       &lt;&lt;set $readerChoice to _i&gt;&gt;
-      &lt;&lt;goto &quot;secondPassage&quot;&gt;&gt;
     &lt;&lt;/link&gt;&gt;
   &lt;&lt;/capture&gt;&gt;
 &lt;&lt;/for&gt;&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="secondPassage" tags="" position="350,100" size="100,100">You selected choice number $readerChoice
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="secondPassage" tags="" position="350,100" size="100,100">You selected choice number &#39;&#39;&lt;&lt;print $readerChoice + 1&gt;&gt;&#39;&#39; \
+(which is actually item number &#39;&#39;$readerChoice&#39;&#39; of the array)
 
-Which has this name: &lt;&lt;print $choices[$readerChoice]&gt;&gt;
+Which has this name: &#39;&#39;&lt;&lt;print $choices[$readerChoice]&gt;&gt;&#39;&#39;
 Which is this image:
 [img[&quot;../assets/&quot; + $choices[$readerChoice] + &quot;.png&quot;]]</tw-passagedata></tw-storydata>
 	<script id="script-sugarcube" type="text/javascript">

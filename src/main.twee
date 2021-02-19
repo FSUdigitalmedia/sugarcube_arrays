@@ -19,22 +19,32 @@ body { background: white }
 :: Start
 This is an example of how you can use arrays to fill a dropdown list and keep track of which selection that the user made.
 
-Choose a snack from the list:
+Choose a snack from this image list:
 
 <<nobr>>
 <<for _i to 0; _i lt $choices.length; _i++>>
   <<capture _i>>
-    <<link [img["../assets/" + $choices[_i] + ".png"]]>>
+    [img["../assets/" + $choices[_i] + ".png"][secondPassage][$readerChoice to _i]]
+  <</capture>>
+<</for>>
+<</nobr>>
+
+Or use this list of links:
+<<nobr>>
+<<for _i to 0; _i lt $choices.length; _i++>>
+  <<capture _i>>
+    <<link $choices[_i] "secondPassage">>
       <<set $readerChoice to _i>>
-      <<goto "secondPassage">>
     <</link>>
   <</capture>>
 <</for>>
 <</nobr>>
 
-:: secondPassage
-You selected choice number $readerChoice
 
-Which has this name: <<print $choices[$readerChoice]>>
+:: secondPassage
+You selected choice number ''<<print $readerChoice + 1>>'' \
+(which is actually item number ''$readerChoice'' of the array)
+
+Which has this name: ''<<print $choices[$readerChoice]>>''
 Which is this image:
 [img["../assets/" + $choices[$readerChoice] + ".png"]]
