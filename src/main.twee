@@ -24,7 +24,7 @@ Choose a snack from this image list:
 <<nobr>>
 <<for _i to 0; _i lt $choices.length; _i++>>
   <<capture _i>>
-    [img["../assets/" + $choices[_i] + ".png"][secondPassage][$readerChoice to _i]]
+    [img["assets/" + $choices[_i] + ".png"][secondPassage][$readerChoice to _i]]
   <</capture>>
 <</for>>
 <</nobr>>
